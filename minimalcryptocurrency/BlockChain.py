@@ -35,9 +35,14 @@ class BlockChain:
         """BlockChain object"""
 
         # Difficulty update parameters
-        self.minimum_interval = 59  # 59 Seconds - the minimum interval between blocks is a minute
-        self.block_interval = 600  # 10 minutes - the objective interval between blocks
-        self.difficulty_interval = 144  # 144 block - the time for evaluate intervals (one per day 6 * 24)
+        # 59 Seconds - the minimum interval between blocks is a minute
+        self.minimum_interval = 59
+
+        # 10 minutes - the objective interval between blocks
+        self.block_interval = 600
+
+        # 144 block - the time for evaluate intervals (one per day 6 * 24)
+        self.difficulty_interval = 144
 
         # Currency values
         self.__unspent = None
@@ -60,12 +65,13 @@ class BlockChain:
     def __repr__(self):
         """ Return repr(self). """
 
-        last_block = max(0, len(self.chain) - 5)
+        last_block = max(0, self.num_blocks - 5)
         result = ""
 
-        for step in reversed(range(last_block, len(self.chain))):
+        for step in reversed(range(last_block, self.num_blocks)):
             result = "%sBlock: %d (%s) - Hash: %s\n" % \
-                     (result, self.chain[step].index, self.chain[step].timestamp, self.chain[step].hash)
+                     (result, self.chain[step].index, self.chain[step].timestamp,
+                      self.chain[step].hash)
 
         if last_block > 0:
             result = '%s\nand %d block hidden' % (result, last_block)
@@ -86,7 +92,7 @@ class BlockChain:
         """
 
         if self.chain:
-            for step in range(len(self.chain) - 1, 0, -1):
+            for step in range(self.num_blocks - 1, 0, -1):
                 if not self.chain[step].is_valid:
                     return False
                 elif self.chain[step].previous_hash != self.chain[step - 1].hash:
@@ -110,8 +116,8 @@ class BlockChain:
 
         if self.chain:
             return self.chain[-1]
-        else:
-            return None
+
+        return None
 
     @property
     def num_blocks(self):
@@ -139,7 +145,7 @@ class BlockChain:
                 return False
 
             # Evaluate the difficulty
-            if len(self.chain) > 0 and len(self.chain) % self.difficulty_interval == 0:
+            if self.num_blocks > 0 and self.num_blocks % self.difficulty_interval == 0:
                 interval = self.chain[-1].timestamp - self.chain[-self.difficulty_interval].timestamp
                 interval = interval.total_seconds() / (self.difficulty_interval - 1)
 
