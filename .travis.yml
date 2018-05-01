@@ -1,0 +1,19 @@
+# Config file for automatic testing at travis-ci.org
+
+sudo: false
+language: python
+
+matrix:
+    include:
+      - python: 3.6
+        env: TOXENV=py36
+
+script: tox
+
+install:
+    - pip install tox
+
+
+after_success:
+    - pip install codecov
+    - codecov -e TOXENV TRAVIS_OS_NAME
