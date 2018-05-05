@@ -24,13 +24,14 @@ from datetime import datetime
 from minimalcryptocurrency import BlockChain
 from minimalcryptocurrency import Wallet
 
+
 def test_minimal_cryptocurrency():
     """Test the operation with a minimal cryptocurrency"""
 
     wallet_1 = Wallet('aedc3975fa118bec4a1d203cd2b996c4ceb5aa398b7f7518')
 
     # Launch a new currency
-    blockchain = BlockChain.new_cryptocurrency(wallet_1.public, 100,timestamp=datetime(2000, 1, 1, 0, 0, 0),
+    blockchain = BlockChain.new_cryptocurrency(wallet_1.public, 100, timestamp=datetime(2000, 1, 1, 0, 0, 0),
                                                difficulty=4, mining=True)
 
     # Open the wallets

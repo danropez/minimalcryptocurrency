@@ -44,7 +44,8 @@ class InputTransaction:
     def __eq__(self, transaction):
         """ Return self==value. """
 
-        return self.hash_id == transaction.hash_id and self.index == transaction.index
+        return self.hash_id == transaction.hash_id and \
+               self.index == transaction.index
 
     def __repr__(self):
         """ Return repr(self). """
@@ -53,7 +54,7 @@ class InputTransaction:
 
 
 class OutputTransaction:
-    """Input transaction class"""
+    """Output transaction class"""
 
     def __init__(self, address, amount):
         """Create a new UnspentTransaction Object
@@ -136,8 +137,8 @@ class Transaction:
             (String): the signature of the transaction
         """
 
-        sk = SigningKey.from_string(bytes.fromhex(key))
-        self.signature = sk.sign(self.hash_id.encode('utf-8')).hex()
+        signature_key = SigningKey.from_string(bytes.fromhex(key))
+        self.signature = signature_key.sign(self.hash_id.encode('utf-8')).hex()
 
 
 class UnspentList:
@@ -161,7 +162,8 @@ class UnspentList:
         if not isinstance(transaction.inputs, datetime):
             for inputs in transaction.inputs:
                 for unspent in self.unspent:
-                    if unspent.hash_id == inputs.hash_id and unspent.index == inputs.index:
+                    if unspent.hash_id == inputs.hash_id and \
+                            unspent.index == inputs.index:
                         use_transactions.append(unspent)
 
         # Spend all transactions
@@ -170,7 +172,8 @@ class UnspentList:
 
         # Create the new transaction
         for index in range(len(transaction.outputs)):
-            unspent = UnspentTransaction(transaction.hash_id, index, transaction.outputs[index].address,
+            unspent = UnspentTransaction(transaction.hash_id, index,
+                                         transaction.outputs[index].address,
                                          transaction.outputs[index].amount)
 
             self.unspent.append(unspent)
@@ -217,7 +220,8 @@ class UnspentList:
             if not isinstance(unconfirmed.inputs, datetime):
                 for unconfirmed_inputs in unconfirmed.inputs:
                     for unspent in result:
-                        if unconfirmed_inputs.index == unspent.index and unconfirmed_inputs.hash_id == unspent.hash_id:
+                        if unconfirmed_inputs.index == unspent.index and \
+                                unconfirmed_inputs.hash_id == unspent.hash_id:
                             result.remove(unspent)
 
         return result
@@ -303,8 +307,10 @@ class UnspentList:
                                 return False
 
                     # Validate the signature
-                    if unspent.hash_id == inputs.hash_id and unspent.index == inputs.index:
-                        if is_signature_valid(transaction.hash_id, transaction.signature, unspent.address):
+                    if unspent.hash_id == inputs.hash_id and \
+                            unspent.index == inputs.index:
+                        if is_signature_valid(transaction.hash_id,
+                                              transaction.signature, unspent.address):
                             use_transactions.append(unspent)
                         else:
                             return False

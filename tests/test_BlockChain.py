@@ -168,6 +168,31 @@ def test_add_candidates_prof():
     # Add an empty candidate
     assert blockchain.add_candidate(None)
 
+    # Add an invalid candidate (same date)
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1)) is False
+
+    assert blockchain.candidate_proof(3) is False
+    assert blockchain.candidate_proof(4) is False
+
+
+def test_mining_candidate():
+    """Test mining candidate """
+
+    block = Block.genesis_block(timestamp=datetime(2000, 1, 1), difficulty=4, mining=True)
+    blockchain = BlockChain(block)
+
+    # Add a new candidate
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 2))
+    assert blockchain.mining_candidate()
+
+    # Add an empty candidate
+    assert blockchain.add_candidate(None)
+    assert blockchain.mining_candidate()
+
+    # Add an invalid candidate (same date)
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1)) is False
+    assert blockchain.mining_candidate() is False
+
 
 def test_replace_chain():
     """Test replace a chain"""
@@ -237,3 +262,23 @@ def test_update_difficulty():
 
     assert blockchain.chain[9].difficulty == 5
     assert blockchain.chain[10].difficulty == 4
+
+
+def test_change_block_contains():
+    """Test different attacks to the blockchain"""
+
+    data = ["Avocado", "Apple", "Cherry", "Orange", "Strawberry"]
+
+    block = Block.genesis_block(data[0], timestamp=datetime(2000, 1, 1), difficulty=4, mining=True)
+    blockchain = BlockChain(block)
+
+    for minute in range(1, len(data)):
+        assert blockchain.add_candidate(data[minute], timestamp=datetime(2000, 1, 1, 0, minute, 0))
+        assert blockchain.mining_candidate()
+
+    assert blockchain.is_valid
+
+    # Alter the blockchain data
+    blockchain.chain[2].data = 'Khaki'
+
+    assert blockchain.is_valid is False

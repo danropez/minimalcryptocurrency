@@ -1,7 +1,8 @@
 minimalcryptocurrency
 =====================
 
-|Travis CI build status| |Codecov Code Coverage| |Scrutinizer Code Quality|
+|Travis CI build status| |Requirements Status| |Codecov Code Coverage|
+|Scrutinizer Code Quality| |Codacy Badge|
 
 This package implements a basic Blockchain and a Cryptocurrency.
 
@@ -118,7 +119,11 @@ with this program. If not, see https://www.gnu.org/licenses/.
 
 .. |Travis CI build status| image:: https://travis-ci.org/drodriguezperez/minimalcryptocurrency.svg?branch=master
    :target: https://travis-ci.org/drodriguezperez/minimalcryptocurrency
+.. |Requirements Status| image:: https://requires.io/github/drodriguezperez/minimalcryptocurrency/requirements.svg?branch=develop
+   :target: https://requires.io/github/drodriguezperez/minimalcryptocurrency/requirements/?branch=develop
 .. |Codecov Code Coverage| image:: https://codecov.io/gh/drodriguezperez/minimalcryptocurrency/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/drodriguezperez/minimalcryptocurrency
 .. |Scrutinizer Code Quality| image:: https://scrutinizer-ci.com/g/drodriguezperez/minimalcryptocurrency/badges/quality-score.png?b=master
    :target: https://scrutinizer-ci.com/g/drodriguezperez/minimalcryptocurrency/?branch=master
+.. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/23fe4d509e9e4e68a14723ae808f8e10
+   :target: https://www.codacy.com/app/drodriguezperez/minimalcryptocurrency?utm_source=github.com&utm_medium=referral&utm_content=drodriguezperez/minimalcryptocurrency&utm_campaign=Badge_Grade

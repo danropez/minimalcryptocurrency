@@ -1,8 +1,10 @@
 # minimalcryptocurrency
 
 [![Travis CI build status](https://travis-ci.org/drodriguezperez/minimalcryptocurrency.svg?branch=master)](https://travis-ci.org/drodriguezperez/minimalcryptocurrency)
+[![Requirements Status](https://requires.io/github/drodriguezperez/minimalcryptocurrency/requirements.svg?branch=develop)](https://requires.io/github/drodriguezperez/minimalcryptocurrency/requirements/?branch=develop)
 [![Codecov Code Coverage](https://codecov.io/gh/drodriguezperez/minimalcryptocurrency/branch/master/graph/badge.svg)](https://codecov.io/gh/drodriguezperez/minimalcryptocurrency)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/drodriguezperez/minimalcryptocurrency/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drodriguezperez/minimalcryptocurrency/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/23fe4d509e9e4e68a14723ae808f8e10)](https://www.codacy.com/app/drodriguezperez/minimalcryptocurrency?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=drodriguezperez/minimalcryptocurrency&amp;utm_campaign=Badge_Grade)
 
 This package implements a basic Blockchain and a Cryptocurrency.
 
@@ -79,8 +81,7 @@ More users can access the and exchange coins.
     assert dan.get_balance() == 6.7
     assert eve.get_balance() == 10
 
-Disclaimer
-----------
+## Disclaimer
 Copyright (C) 2018 Daniel Rodríguez Pérez
 
 This program is free software: you can redistribute it and/or modify

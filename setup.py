@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="minimalcryptocurrency",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/drodriguezperez/minimalcryptocurrency",
 
     author=u"Daniel Rodríguez Pérez",
@@ -15,7 +15,7 @@ setuptools.setup(
 
     packages=setuptools.find_packages(),
 
-    install_requires=['ecdsa'],
+    install_requires=['ecdsa>=0.13'],
 
     classifiers=[
         'Programming Language :: Python',
