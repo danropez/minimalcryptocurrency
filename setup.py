@@ -15,7 +15,7 @@ setuptools.setup(
 
     packages=setuptools.find_packages(),
 
-    install_requires=['ecdsa'],
+    install_requires=['ecdsa>=0.13'],
 
     classifiers=[
         'Programming Language :: Python',

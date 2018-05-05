@@ -267,6 +267,9 @@ class BlockChain:
              (Logical): True if a valid proof has been found
         """
 
+        if self.__candidate is None:
+            return False
+
         if self.__candidate.mining(init, maximum_iter):
             self.chain.append(self.__candidate)
             self.__candidate = None

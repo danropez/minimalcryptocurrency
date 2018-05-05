@@ -168,6 +168,31 @@ def test_add_candidates_prof():
     # Add an empty candidate
     assert blockchain.add_candidate(None)
 
+    # Add an invalid candidate (same date)
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1)) is False
+
+    assert blockchain.candidate_proof(3) is False
+    assert blockchain.candidate_proof(4) is False
+
+
+def test_mining_candidate():
+    """Test mining candidate """
+
+    block = Block.genesis_block(timestamp=datetime(2000, 1, 1), difficulty=4, mining=True)
+    blockchain = BlockChain(block)
+
+    # Add a new candidate
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 2))
+    assert blockchain.mining_candidate()
+
+    # Add an empty candidate
+    assert blockchain.add_candidate(None)
+    assert blockchain.mining_candidate()
+
+    # Add an invalid candidate (same date)
+    assert blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1)) is False
+    assert blockchain.mining_candidate() is False
+
 
 def test_replace_chain():
     """Test replace a chain"""
