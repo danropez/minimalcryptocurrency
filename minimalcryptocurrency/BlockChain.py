@@ -145,9 +145,9 @@ class BlockChain:
                 return False
 
             # Evaluate the difficulty
-            if self.num_blocks > 0 and self.num_blocks % self.difficulty_interval == 0:
-                interval = self.chain[-1].timestamp - self.chain[-self.difficulty_interval].timestamp
-                interval = interval.total_seconds() / (self.difficulty_interval - 1)
+            if self.num_blocks > self.difficulty_interval and self.num_blocks % self.difficulty_interval == 0:
+                interval = self.chain[-1].timestamp - self.chain[-self.difficulty_interval - 1].timestamp
+                interval = interval.total_seconds() / self.difficulty_interval
 
                 if interval > self.block_interval:
                     difficulty = self.last_block.difficulty - 1

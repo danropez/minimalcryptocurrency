@@ -242,17 +242,19 @@ def test_update_difficulty():
     blockchain = BlockChain(block)
 
     # Change the interval for tests
-    blockchain.difficulty_interval = 5
+    blockchain.difficulty_interval = 2
 
     # Blocks generates in a minute: the difficulty must increase
-    for minute in range(1, 6):
+    for minute in range(1, 7):
         blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1, 0, minute, 0))
         blockchain.mining_candidate()
 
-    assert blockchain.chain[4].difficulty == 4
+    assert blockchain.chain[3].difficulty == 4
+    assert blockchain.chain[4].difficulty == 5
     assert blockchain.chain[5].difficulty == 5
+    assert blockchain.chain[6].difficulty == 6
 
-    # Blocks generates in a eleven minutes: the difficulty must decrease
+    # Blocks generates in any eleven minutes: the difficulty must decrease
     for minute in range(17, 60, 11):
         blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1, 0, minute, 0))
         blockchain.mining_candidate()
@@ -260,8 +262,8 @@ def test_update_difficulty():
     blockchain.add_candidate(None, timestamp=datetime(2000, 1, 1, 1, 1, 0))
     blockchain.mining_candidate()
 
-    assert blockchain.chain[9].difficulty == 5
-    assert blockchain.chain[10].difficulty == 4
+    assert blockchain.chain[9].difficulty == 7
+    assert blockchain.chain[10].difficulty == 6
 
 
 def test_change_block_contains():
