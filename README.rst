@@ -99,6 +99,13 @@ More users can access the and exchange coins.
     assert dan.get_balance() == 6.7
     assert eve.get_balance() == 10
 
+References
+----------
+
+The package implements the contents of the blog (only in Spanish
+`Analytics
+Lane <https://www.analyticslane.com/2018/06/18/implementacion-criptomoneda/>`__
+
 Disclaimer
 ----------
 
