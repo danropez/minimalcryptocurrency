@@ -15,6 +15,6 @@ from minimalcryptocurrency.Wallet import Wallet
 from minimalcryptocurrency.Block import Block
 from minimalcryptocurrency.BlockChain import BlockChain
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __author__ = u'Daniel Rodríguez Pérez <daniel.rodriguez.perez@gmail.com>'
 __all__ = []
