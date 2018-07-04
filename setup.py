@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="minimalcryptocurrency",
-    version="0.1.1",
+    version="0.1.2",
     url="https://github.com/drodriguezperez/minimalcryptocurrency",
 
     author=u"Daniel Rodríguez Pérez",
